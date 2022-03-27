@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { instanceToPlain } from 'class-transformer';
-import type { JsonSerializable } from './JsonSerializable';
-import { getDecorators, getLastDecorator } from './utils/GetDecorators';
+import { getDecorators } from '../util/getDecorators';
+import { getLastDecorator } from '../util/getLastDecorator';
+import { JsonSerializable } from './serializable/jsonSerializable';
 
 function isUserDefined({
   target,

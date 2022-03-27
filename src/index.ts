@@ -1,4 +1,4 @@
-import { Sample, Sample2 } from './model/Sample';
+import { Sample, Sample2 } from './model/sample';
 import { deserialize } from './serialize/Deserialize';
 
 // let model = new Sample();
