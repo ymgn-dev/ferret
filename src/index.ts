@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import { Sample } from './model/Sample';
 import { deserialize } from './serialize/Deserialize';
 import { serialize } from './serialize/Serialize';
@@ -15,7 +16,7 @@ console.log(json);
 
 // JSON to instance
 const instance = deserialize(
-  { id: '1', name: 'sample_name', createdAt: new Date(), updatedAt: new Date() },
+  { id: '1', name: 'sample_name', createdAt: Timestamp.now(), updatedAt: Timestamp.now() },
   Sample,
 );
 
