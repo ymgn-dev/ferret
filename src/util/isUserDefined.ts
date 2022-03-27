@@ -1,9 +1,10 @@
+import { userDefinedAnnotation } from '../constant/metadata';
 import { getDecorators } from './getDecorators';
 
 export function isUserDefined({
   target,
   propertyName,
-  annotation = 'user-define:',
+  annotation = userDefinedAnnotation,
 }: {
   target: any;
   propertyName: string | symbol;

@@ -1,10 +1,11 @@
 import 'reflect-metadata';
+import { firebaseAnnotation } from '../constant/metadata';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function getDecorators({
   target,
   propertyName,
-  annotation = 'firebase:',
+  annotation = firebaseAnnotation,
 }: {
   target: any;
   propertyName: string | symbol;

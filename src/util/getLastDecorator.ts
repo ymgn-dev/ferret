@@ -1,9 +1,10 @@
+import { firebaseAnnotation } from '../constant/metadata';
 import { getDecorators } from './getDecorators';
 
 export function getLastDecorator({
   target,
   propertyName,
-  annotation = 'firebase:',
+  annotation = firebaseAnnotation,
 }: {
   target: any;
   propertyName: string | symbol;

@@ -1,3 +1,5 @@
+import { userDefinedMetadataKey } from '../constant/metadata';
+
 export function getUserDefinedMetadata({
   target,
   propertyName,
@@ -5,5 +7,5 @@ export function getUserDefinedMetadata({
   target: any;
   propertyName: string | symbol;
 }) {
-  return Reflect.getMetadata('user-define:property', target, propertyName);
+  return Reflect.getMetadata(userDefinedMetadataKey, target, propertyName);
 }
