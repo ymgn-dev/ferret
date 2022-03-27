@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ClassConstructor, plainToInstance } from 'class-transformer';
+import { applyFuncAnyType } from '../util/applyFuncAnyType';
 import { getLastDecorator } from '../util/getLastDecorator';
 import { getUserDefinedMetadata } from '../util/getUserDefinedMetadata';
 import { isUserDefined } from '../util/isUserDefined';
@@ -11,8 +12,9 @@ export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
 
   for (const property in instance) {
     if (isUserDefined({ target: instance, propertyName: property })) {
-      instance[property] = deserialize(
+      instance[property] = applyFuncAnyType(
         json[property],
+        deserialize,
         getUserDefinedMetadata({ target: instance, propertyName: property }),
       );
       continue;
@@ -21,7 +23,7 @@ export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
     if (decorator === undefined) {
       continue;
     }
-    instance[property] = (decorator as JsonSerializable).fromJson(instance[property]);
+    instance[property] = applyFuncAnyType(json[property], (decorator as JsonSerializable).fromJson);
   }
 
   return instance;
