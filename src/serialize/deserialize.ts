@@ -14,7 +14,7 @@ export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
       instance[property] = deserialize(
         json[property],
         getUserDefinedMetadata({ target: instance, propertyName: property }),
-      ) as any;
+      );
       continue;
     }
     const decorator = getLastDecorator({ target: instance, propertyName: property });

@@ -3,7 +3,7 @@ import { CreatedAt } from '../decorator/createdAt';
 import { UpdatedAt } from '../decorator/updatedAt';
 import { UserDefined } from '../decorator/userDefined';
 
-export class Sample {
+export class Child {
   id?: string;
 
   name?: string;
@@ -15,12 +15,12 @@ export class Sample {
   updatedAt?: Date;
 }
 
-export class NestedSample {
+export class Parent {
   id?: string;
-
-  @UserDefined(Sample)
-  sample: Sample;
 
   @UpdatedAt
   updatedAt?: Date;
+
+  @UserDefined(Child)
+  child: Child;
 }
