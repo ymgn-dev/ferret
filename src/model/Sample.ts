@@ -19,8 +19,8 @@ export class Parent {
   id?: string;
 
   @UpdatedAt
-  updatedAt?: Date;
+  updatedAt?: Date[];
 
   @UserDefined(Child)
-  child: Child;
+  children: Child[];
 }

@@ -52,7 +52,46 @@ export class Parent {
   @UserDefined(Child)
   child: Child;
 }
+```
 
+## Array type support
+
+The above decorators also support array type properties.
+There is no need to change any code, just make it an array type.
+
+```ts
+export class Parent {
+  id?: string;
+
+  @UpdatedAt
+  updatedAt?: Date;
+
+  @UserDefined(Child)
+  children: Child[];
+}
+
+const model = new Parent();
+...
+const json = serialize(model);
+console.log(json);
+// {
+//   id: '2',
+//   updatedAt: FieldValue.serverTimestamp(),
+//   children: [
+//     {
+//       id: '0',
+//       name: 'sample_name0',
+//       createdAt: FieldValue.serverTimestamp(),
+//       updatedAt: FieldValue.serverTimestamp(),
+//     },
+//     {
+//       id: '1',
+//       name: 'sample_name1',
+//       createdAt: FieldValue.serverTimestamp(),
+//       updatedAt: FieldValue.serverTimestamp(),
+//     }
+//   ]
+// }
 ```
 
 ## Serialize / Deserialize
@@ -82,7 +121,6 @@ const instance = deserialize(
 );
 
 console.log(instance);
-
 // Sample {
 //   id: '1',
 //   name: 'sample_name',
@@ -94,5 +132,8 @@ console.log(instance);
 
 ## TODO
 
-- [ ] Support for nested properties
-- [ ] Implementation of additional decorators
+- [x] Support for nested properties
+- [x] Support for Array type properties
+- [ ] Support for Map type properties
+- [ ] Support for Set type properties
+- [] Implementation of additional decorators
