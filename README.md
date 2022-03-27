@@ -4,28 +4,55 @@ A collection of methods to serialize a model for storage in a Firestore or to de
 
 ## Decorators
 
-### CreatedAtConverter
+### CreatedAt
 
 Decorator that converts to serverTimestamp() if the property is undefined when serializing.
 It also automatically performs normal Date⇄Timestamp conversions.
 
 ```ts
 class Sample {
-    @CreatedAtConverter
+    @CreatedAt
     createdAt?: Date;
 }
 ```
 
-### UpdatedAtConverters
+### UpdatedAt
 
 Decorator that converts to serverTimestamp each time when serializing.
 It also automatically performs normal Date⇄Timestamp conversions.
 
 ```ts
 class Sample {
-    @UpdatedAtConverter
+    @UpdatedAt
     updatedAt?: Date;
 }
+```
+
+### UserDefined
+
+To have your own defined type as a property, use the UserDefined decorator.
+You can serialize your own types even if they use other decorators internally.
+
+```ts
+export class Child {
+  id?: string;
+
+  name?: string;
+
+  @UpdatedAt
+  updatedAt?: Date;
+}
+
+export class Parent {
+  id?: string;
+
+  @UpdatedAt
+  updatedAt?: Date;
+
+  @UserDefined(Child)
+  child: Child;
+}
+
 ```
 
 ## Serialize / Deserialize

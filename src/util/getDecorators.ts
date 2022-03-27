@@ -1,10 +1,11 @@
 import 'reflect-metadata';
+import { firebaseAnnotation } from '../constant/metadata';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function getDecorators({
   target,
   propertyName,
-  annotation = 'firebase:',
+  annotation = firebaseAnnotation,
 }: {
   target: any;
   propertyName: string | symbol;
@@ -19,17 +20,4 @@ export function getDecorators({
     }, []);
 
   return decorators;
-}
-
-export function getLastDecorator({
-  target,
-  propertyName,
-  annotation = 'firebase:',
-}: {
-  target: any;
-  propertyName: string | symbol;
-  annotation?: string;
-}): any {
-  const decorators = getDecorators({ target, propertyName, annotation });
-  return decorators.length > 0 ? decorators[decorators.length - 1] : undefined;
 }

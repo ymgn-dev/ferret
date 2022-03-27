@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FieldValue, serverTimestamp, Timestamp } from 'firebase/firestore';
-import { JsonSerializable } from './JsonSerializable';
+import { JsonSerializable } from './jsonSerializable';
 
-export class UpdatedAtSerializable extends JsonSerializable {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  override toJson(property?: any): FieldValue {
-    return serverTimestamp();
+export class CreatedAtSerializable extends JsonSerializable {
+  override toJson(property?: any): FieldValue | Timestamp {
+    if (property === undefined) {
+      return serverTimestamp();
+    }
+    if (property instanceof Timestamp) {
+      return property;
+    }
+    return Timestamp.fromDate(property);
   }
 
   override fromJson(property?: any): Date | undefined {

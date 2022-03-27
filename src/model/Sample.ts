@@ -1,15 +1,26 @@
 import 'reflect-metadata';
-import { CreatedAtConverter } from '../decorators/CreatedAtConverters';
-import { UpdatedAtConverter } from '../decorators/UpdatedAtConverters';
+import { CreatedAt } from '../decorator/createdAt';
+import { UpdatedAt } from '../decorator/updatedAt';
+import { UserDefined } from '../decorator/userDefined';
 
-export class Sample {
+export class Child {
   id?: string;
 
   name?: string;
 
-  @CreatedAtConverter
+  @CreatedAt
   createdAt?: Date;
 
-  @UpdatedAtConverter
+  @UpdatedAt
   updatedAt?: Date;
+}
+
+export class Parent {
+  id?: string;
+
+  @UpdatedAt
+  updatedAt?: Date;
+
+  @UserDefined(Child)
+  child: Child;
 }
