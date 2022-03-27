@@ -5,13 +5,18 @@ import { serialize } from './serialize/serialize';
 let model = new Parent();
 model.id = '2';
 model.updatedAt = new Date();
-model.child = new Child();
-model.child.id = '1';
-model.child.name = 'sample_name';
-model.child.createdAt = undefined;
-model.child.updatedAt = undefined;
+
+model.child = [new Child(), new Child(), new Child()];
+
+for (let i = 0; i < 3; i++) {
+  model.child[i].id = `${i}`;
+  model.child[i].name = `sample_name${i}`;
+  model.child[i].createdAt = undefined;
+  model.child[i].updatedAt = undefined;
+}
 
 const json = serialize(model);
+
 console.log('--------- serialize ---------');
 console.log(json);
 
@@ -23,5 +28,5 @@ const instance = deserialize(
   },
   Parent,
 );
-console.log('--------- deserialize ---------');
-console.log(instance);
+// console.log('--------- deserialize ---------');
+// console.log(instance);

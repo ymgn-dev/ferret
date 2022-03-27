@@ -22,5 +22,5 @@ export class Parent {
   updatedAt?: Date;
 
   @UserDefined(Child)
-  child: Child;
+  child: Child[];
 }
