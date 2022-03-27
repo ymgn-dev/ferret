@@ -136,4 +136,4 @@ console.log(json);
 - [x] Support for Array type properties
 - [ ] Support for Map type properties
 - [ ] Support for Set type properties
-- [] Implementation of additional decorators
+- [ ] Implementation of additional decorators
