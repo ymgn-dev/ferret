@@ -1,22 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { instanceToPlain } from 'class-transformer';
-import { getDecorators } from '../util/getDecorators';
 import { getLastDecorator } from '../util/getLastDecorator';
+import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
-
-function isUserDefined({
-  target,
-  propertyName,
-  annotation = 'user-define:',
-}: {
-  target: any;
-  propertyName: string | symbol;
-  annotation?: string;
-}) {
-  const nestedDecorators = getDecorators({ target, propertyName, annotation });
-  return nestedDecorators.length > 0;
-}
 
 export function serialize(instance: any) {
   const json = instanceToPlain(instance);

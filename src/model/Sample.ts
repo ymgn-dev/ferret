@@ -15,7 +15,7 @@ export class Sample {
   updatedAt?: Date;
 }
 
-export class Sample2 {
+export class NestedSample {
   id?: string;
 
   @UserDefined(Sample)

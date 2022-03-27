@@ -1,32 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ClassConstructor, plainToInstance } from 'class-transformer';
-import { getDecorators } from '../util/getDecorators';
 import { getLastDecorator } from '../util/getLastDecorator';
+import { getUserDefinedMetadata } from '../util/getUserDefinedMetadata';
+import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
-
-function isUserDefined({
-  target,
-  propertyName,
-  annotation = 'user-define:',
-}: {
-  target: any;
-  propertyName: string | symbol;
-  annotation?: string;
-}) {
-  const nestedDecorators = getDecorators({ target, propertyName, annotation });
-  return nestedDecorators.length > 0;
-}
-
-function userDefinedMetadata({
-  target,
-  propertyName,
-}: {
-  target: any;
-  propertyName: string | symbol;
-}) {
-  return Reflect.getMetadata('user-define:property', target, propertyName);
-}
 
 export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
   const instance = plainToInstance(cls, json);
@@ -35,7 +13,7 @@ export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
     if (isUserDefined({ target: instance, propertyName: property })) {
       instance[property] = deserialize(
         json[property],
-        userDefinedMetadata({ target: instance, propertyName: property }),
+        getUserDefinedMetadata({ target: instance, propertyName: property }),
       ) as any;
       continue;
     }

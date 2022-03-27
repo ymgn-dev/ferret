@@ -1,4 +1,4 @@
-import { Sample, Sample2 } from './model/sample';
+import { NestedSample, Sample } from './model/sample';
 import { deserialize } from './serialize/Deserialize';
 
 // let model = new Sample();
@@ -20,7 +20,7 @@ import { deserialize } from './serialize/Deserialize';
 
 // console.log(instance);
 
-let model = new Sample2();
+let model = new NestedSample();
 model.id = '2';
 model.updatedAt = new Date();
 model.sample = new Sample();
@@ -38,6 +38,6 @@ const instance = deserialize(
     updatedAt: new Date(),
     sample: { id: '1', name: 'sample_name', createdAt: new Date(), updatedAt: new Date() },
   },
-  Sample2,
+  NestedSample,
 );
 console.log(instance);
