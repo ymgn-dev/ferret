@@ -18,18 +18,8 @@ for (let i = 0; i < 3; i++) {
 
 const json = serialize(model);
 
-// console.log('--------- serialize ---------');
-// console.log(json);
-
-// export class Parent {
-//   id?: string;
-
-//   @UpdatedAt
-//   updatedAt?: Date;
-
-//   @UserDefined(Child)
-//   child: Child[];
-// }
+console.log('--------- serialize ---------');
+console.log(json);
 
 const instance = deserialize(
   {
