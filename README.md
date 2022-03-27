@@ -67,5 +67,5 @@ console.log(instance);
 
 ## TODO
 
-[ ] Support for nested properties
-[ ] Implementation of additional decorators
+- [ ] Support for nested properties
+- [ ] Implementation of additional decorators
