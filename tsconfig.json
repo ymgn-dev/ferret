@@ -7,7 +7,8 @@
     "sourceMap": true,
     "strict": true,
     "experimentalDecorators": true,
-    "target": "es2015"
+    "target": "es2015",
+    "strictPropertyInitialization": false
   },
   "compileOnSave": true,
   "include": ["src"]
