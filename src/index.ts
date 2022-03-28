@@ -7,6 +7,12 @@ let model = new Parent();
 model.id = '2';
 model.updatedAt = [new Date(), new Date()];
 
+model.child = new Child();
+model.child.id = '3';
+model.child.name = 'child_name';
+model.child.updatedAt = undefined;
+model.child.createdAt = undefined;
+
 model.children = [new Child(), new Child(), new Child()];
 
 for (let i = 0; i < 3; i++) {
@@ -25,7 +31,8 @@ const instance = deserialize(
   {
     id: '2',
     updatedAt: [Timestamp.now(), Timestamp.now()],
-    child: [
+    child: { id: '0', name: 'sample_name0', createdAt: new Date(), updatedAt: new Date() },
+    children: [
       { id: '1', name: 'sample_name', createdAt: new Date(), updatedAt: new Date() },
       { id: '2', name: 'sample_nam2', createdAt: new Date(), updatedAt: new Date() },
     ],

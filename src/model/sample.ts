@@ -23,4 +23,7 @@ export class Parent {
 
   @UserDefined(Child)
   children: Child[];
+
+  @UserDefined(Child)
+  child: Child;
 }
