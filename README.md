@@ -1,6 +1,6 @@
-# Firebase JSON Serializer
+# Ferret
 
-A collection of methods to serialize a model for storage in a Firestore or to deserialize JSON retrieved from a Firestore into a model.
+Ferret is a model serialization library for the Firebase JavaScript SDK.
 
 ## Serialize / Deserialize
 
