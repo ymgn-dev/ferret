@@ -2,5 +2,5 @@ export function applyFuncAnyType(instance: any, callback: Function, ...moreArgs:
   if (Array.isArray(instance)) {
     return instance.map((item) => callback(item, ...moreArgs));
   }
-  return callback(instance);
+  return callback(instance, ...moreArgs);
 }
