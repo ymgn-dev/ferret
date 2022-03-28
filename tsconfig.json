@@ -1,16 +1,26 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": true,
-    "experimentalDecorators": true,
     "target": "es2015",
-    "strictPropertyInitialization": false,
-    "noImplicitReturns": true,
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+
+    "strict": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
   "compileOnSave": true,
-  "include": ["src"]
+  "include": ["src/**/*"]
 }
