@@ -1,24 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { instanceToPlain } from 'class-transformer';
 import { applyFuncAnyType } from '../util/applyFuncAnyType';
-import { getLastDecorator } from '../util/getLastDecorator';
+import { getLastMetadatum } from '../util/getLastMetadatum';
 import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
 
-export function serialize(instance: any) {
-  const json = instanceToPlain(instance);
+export function serialize(target: any) {
+  const json = instanceToPlain(target);
 
-  for (const key in json) {
-    if (isUserDefined({ target: instance, propertyName: key })) {
-      json[key] = applyFuncAnyType(instance[key], serialize);
+  for (const propertyKey in json) {
+    if (isUserDefined({ target, propertyKey })) {
+      json[propertyKey] = applyFuncAnyType(target[propertyKey], serialize);
       continue;
     }
-    const decorator = getLastDecorator({ target: instance, propertyName: key });
+    const decorator = getLastMetadatum({ target, propertyKey });
     if (decorator === undefined) {
       continue;
     }
-    json[key] = applyFuncAnyType(instance[key], (decorator as JsonSerializable).toJson);
+    json[propertyKey] = applyFuncAnyType(
+      target[propertyKey],
+      (decorator as JsonSerializable).toJson,
+    );
   }
 
   return json;

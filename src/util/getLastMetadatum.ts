@@ -1,15 +1,15 @@
 import { firebaseAnnotation } from '../constant/metadata';
-import { getDecorators } from './getDecorators';
+import { getMetadata } from './getMetadata';
 
-export function getLastDecorator({
+export function getLastMetadatum({
   target,
-  propertyName,
+  propertyKey,
   annotation = firebaseAnnotation,
 }: {
   target: any;
-  propertyName: string | symbol;
+  propertyKey: string | symbol;
   annotation?: string;
 }): any {
-  const decorators = getDecorators({ target, propertyName, annotation });
+  const decorators = getMetadata({ target, propertyKey, annotation });
   return decorators.length > 0 ? decorators[decorators.length - 1] : undefined;
 }

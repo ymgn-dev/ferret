@@ -1,30 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { applyFuncAnyType } from '../util/applyFuncAnyType';
-import { getLastDecorator } from '../util/getLastDecorator';
+import { getLastMetadatum } from '../util/getLastMetadatum';
 import { getUserDefinedMetadata } from '../util/getUserDefinedMetadata';
 import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
 
 export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
-  const instance = plainToInstance(cls, json);
+  const target = plainToInstance(cls, json);
 
-  for (const property in instance) {
-    if (isUserDefined({ target: instance, propertyName: property })) {
-      instance[property] = applyFuncAnyType(
-        json[property],
+  for (const propertyKey in target) {
+    if (isUserDefined({ target, propertyKey })) {
+      target[propertyKey] = applyFuncAnyType(
+        json[propertyKey],
         deserialize,
-        getUserDefinedMetadata({ target: instance, propertyName: property }),
+        getUserDefinedMetadata({ target, propertyKey }),
       );
       continue;
     }
-    const decorator = getLastDecorator({ target: instance, propertyName: property });
+    const decorator = getLastMetadatum({ target, propertyKey });
     if (decorator === undefined) {
       continue;
     }
-    instance[property] = applyFuncAnyType(json[property], (decorator as JsonSerializable).fromJson);
+    target[propertyKey] = applyFuncAnyType(
+      json[propertyKey],
+      (decorator as JsonSerializable).fromJson,
+    );
   }
 
-  return instance;
+  return target;
 }
