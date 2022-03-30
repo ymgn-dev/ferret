@@ -2,7 +2,7 @@
 
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { applyFuncAnyType } from '../util/applyFuncAnyType';
-import { getLastDecorator } from '../util/getLastDecorator';
+import { getLastMetadatum } from '../util/getLastMetadatum';
 import { getUserDefinedMetadata } from '../util/getUserDefinedMetadata';
 import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
@@ -19,7 +19,7 @@ export function deserialize<T>(json: any, cls: ClassConstructor<T>) {
       );
       continue;
     }
-    const decorator = getLastDecorator({ target: instance, propertyName: property });
+    const decorator = getLastMetadatum({ target: instance, propertyName: property });
     if (decorator === undefined) {
       continue;
     }

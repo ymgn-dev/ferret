@@ -1,5 +1,5 @@
 import { userDefinedAnnotation } from '../constant/metadata';
-import { getDecorators } from './getDecorators';
+import { getMetadata } from './getMetadata';
 
 export function isUserDefined({
   target,
@@ -10,6 +10,6 @@ export function isUserDefined({
   propertyName: string | symbol;
   annotation?: string;
 }) {
-  const userDefinedDecorators = getDecorators({ target, propertyName, annotation });
+  const userDefinedDecorators = getMetadata({ target, propertyName, annotation });
   return userDefinedDecorators.length > 0;
 }

@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { firebaseAnnotation } from '../constant/metadata';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function getDecorators({
+export function getMetadata({
   target,
   propertyName,
   annotation = firebaseAnnotation,

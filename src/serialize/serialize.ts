@@ -2,7 +2,7 @@
 
 import { instanceToPlain } from 'class-transformer';
 import { applyFuncAnyType } from '../util/applyFuncAnyType';
-import { getLastDecorator } from '../util/getLastDecorator';
+import { getLastMetadatum } from '../util/getLastMetadatum';
 import { isUserDefined } from '../util/isUserDefined';
 import { JsonSerializable } from './serializable/jsonSerializable';
 
@@ -14,7 +14,7 @@ export function serialize(instance: any) {
       json[key] = applyFuncAnyType(instance[key], serialize);
       continue;
     }
-    const decorator = getLastDecorator({ target: instance, propertyName: key });
+    const decorator = getLastMetadatum({ target: instance, propertyName: key });
     if (decorator === undefined) {
       continue;
     }
