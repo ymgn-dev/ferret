@@ -90,6 +90,17 @@ export class Parent {
 }
 ```
 
+### Geo
+
+Decorator for serializing GeoPoint in Firestore.
+
+```ts
+class Sample {
+    @Geo
+    geoPoint?: GeoPoint;
+}
+```
+
 ## Array type support
 
 The above decorators also support array type properties.
@@ -134,6 +145,4 @@ console.log(json);
 
 - [x] Support for nested properties
 - [x] Support for Array type properties
-- [ ] Support for Map type properties
-- [ ] Support for Set type properties
 - [ ] Implementation of additional decorators
