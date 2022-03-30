@@ -14,8 +14,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "build": "tsc -d",
-    "prepare": "yarn build"
+    "build": "tsc -d"
   },
   "contributors": [
     {

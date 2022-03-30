@@ -22,5 +22,5 @@
     "strictPropertyInitialization": false
   },
   "compileOnSave": true,
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "test/**/*"]
 }
