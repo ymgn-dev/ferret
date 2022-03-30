@@ -106,6 +106,11 @@ class Sample {
 The above decorators also support array type properties.
 There is no need to change any code, just make it an array type.
 
+**Attension**
+
+As of March 2022, Firestore does not support `FieldValue.serverTimestamp()` inside an array.
+Serialization itself is possible, but please design your data structure to avoid such a data structure when saving to Firestore.
+
 ```ts
 export class Parent {
   id?: string;
