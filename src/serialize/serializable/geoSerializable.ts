@@ -3,9 +3,9 @@ import { GeoPoint } from 'firebase/firestore';
 import { JsonSerializable } from './jsonSerializable';
 
 export class GeoSerializable extends JsonSerializable {
-  override toJson(property?: any): { latitude: number; longitude: number } | undefined {
+  override toJson(property?: any): GeoPoint | undefined {
     if (property instanceof GeoPoint) {
-      return property.toJSON();
+      return property;
     }
     return undefined;
   }
