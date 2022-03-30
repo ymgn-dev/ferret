@@ -3,13 +3,13 @@ import { getMetadata } from './getMetadata';
 
 export function isUserDefined({
   target,
-  propertyName,
+  propertyKey,
   annotation = userDefinedAnnotation,
 }: {
   target: any;
-  propertyName: string | symbol;
+  propertyKey: string | symbol;
   annotation?: string;
 }) {
-  const userDefinedDecorators = getMetadata({ target, propertyName, annotation });
+  const userDefinedDecorators = getMetadata({ target, propertyKey, annotation });
   return userDefinedDecorators.length > 0;
 }

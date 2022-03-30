@@ -2,10 +2,10 @@ import { userDefinedMetadataKey } from '../constant/metadata';
 
 export function getUserDefinedMetadata({
   target,
-  propertyName,
+  propertyKey,
 }: {
   target: any;
-  propertyName: string | symbol;
+  propertyKey: string | symbol;
 }) {
-  return Reflect.getMetadata(userDefinedMetadataKey, target, propertyName);
+  return Reflect.getMetadata(userDefinedMetadataKey, target, propertyKey);
 }

@@ -1,21 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import 'reflect-metadata';
 import { firebaseAnnotation } from '../constant/metadata';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export function getMetadata({
   target,
-  propertyName,
+  propertyKey,
   annotation = firebaseAnnotation,
 }: {
   target: any;
-  propertyName: string | symbol;
+  propertyKey: string | symbol;
   annotation?: string;
 }): any[] {
-  const keys: any[] = Reflect.getMetadataKeys(target, propertyName);
+  const keys: any[] = Reflect.getMetadataKeys(target, propertyKey);
   const decorators = keys
     .filter((key) => key.toString().startsWith(annotation))
     .reduce((values, key) => {
-      const currValues = Reflect.getMetadata(key, target, propertyName);
+      const currValues = Reflect.getMetadata(key, target, propertyKey);
       return values.concat(currValues);
     }, []);
 
