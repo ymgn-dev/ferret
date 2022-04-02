@@ -1,6 +1,6 @@
 {
   "name": "@ymgn9314/ferret",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Ferret is a model serialization library for the Firebase JavaScript SDK.",
   "main": "dist/index.js",
   "author": "ymgn9314",
