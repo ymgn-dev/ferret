@@ -4,7 +4,7 @@ import { JsonSerializable } from './jsonSerializable';
 
 export class UpdatedAtSerializable extends JsonSerializable {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  override toJson(property?: any): FieldValue {
+  override toJson(_property?: any): FieldValue {
     return serverTimestamp();
   }
 
